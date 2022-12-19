@@ -16,7 +16,10 @@ while True:
 
     commande_split = commande.split(" ")
     if len(commande_split) == 2 and commande_split[0] == "cd":
-        os.chdir(commande_split[1])
+        try:
+            os.chdir(commande_split[1])
+        except FileNotFoundError:
+            print("ERREUR : chemin inexistant ")
     else:
         result = subprocess.run(commande, shell="True", capture_output=True, universal_newlines=True)
         
